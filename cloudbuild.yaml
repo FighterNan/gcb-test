@@ -1,10 +1,11 @@
 steps:
-  - name: 'gcr.io/gbmc-builders/gbmc-firmware-builder:latest'
+  - name: 'gcr.io/cloud-builders/git'
     args: 
-      - sudo
-      - python
-      - clone.py
+      - ['clone', 'https://github.com/GoogleCloudPlatform/cloud-builders']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+    entrypoint: 'git'
+    args:
+      - ['clone', 'https://quanta-bmc-private.googlesource.com/meta-gsz']
 
-serviceAccount: 'projects/gbmc-builders/serviceAccounts/gbmc-presubmit@gbmc-builders.iam.gserviceaccount.com'
 options:
   logging: CLOUD_LOGGING_ONLY
